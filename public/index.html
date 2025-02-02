@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Easily upload your images, split them into multiple squares, and download them as a zip archive. Perfect for creating thumbnails, profile pictures, or handling large images with ease. Try our free online image cropper tool now!">
+  <meta name="keywords"
+    content="image cropper, image splitter, online image cropper, crop image into squares, crop images for thumbnails, download cropped images zip, free image cropper, image crop tool, crop image online, image square cropper, online image tools, image cropping tool">
+  <meta name="author" content="Marcin Skalski">
+  <meta property="og:title" content="Online Carousel Splitter – Split Images and Download as Zip">
+  <meta property="og:description"
+    content="Easily upload your images, crop them into multiple squares, and download them as a zip archive. Perfect for creating thumbnails, profile pictures, or handling large images with ease. Try our free online image cropper tool now!">
+  <meta property="og:image" content="instagram_logo.png">
+  <meta property="og:url" content="https://carouselsplitter.com">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Carousel Splitter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #F7F7F0;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    input[type="file"] {
+      margin: 15px;
+    }
+
+    canvas {
+      display: none;
+    }
+
+    .images-container {
+      display: flex;
+      overflow-y: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cropped-image {
+      margin: 5px;
+      width: 216px;
+      height: 270px;
+    }
+
+    /* CSS */
+    .button-5 {
+      visibility: hidden;
+      align-items: center;
+      background-clip: padding-box;
+      background-color: #E25000;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+      box-sizing: border-box;
+      color: #F7F7F0;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 1.25;
+      margin: 0;
+      min-height: 3rem;
+      padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+      position: relative;
+      text-decoration: none;
+      transition: all 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      width: auto;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .button-5:hover,
+    .button-5:focus {
+      background-color: #E25000;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    }
+
+    .button-5:active {
+      background-color: #c85000;
+      box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+      transform: translateY(0);
+    }
+
+    input[type="file"]::file-selector-button {
+      border-radius: 4px;
+      padding: 0 16px;
+      height: 40px;
+      cursor: pointer;
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+      margin-right: 16px;
+      transition: background-color 200ms;
+    }
+  </style>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.8.0/jszip.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SY83747114"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-SY83747114');
+  </script>
+</head>
+
+<body>
+
+  <img src="instagram_logo.png" alt="page-logo" width="100px" height="100px">
+
+  <h1>Split Image into Instagram carousel!</h1>
+  <p>To get best results image should have <b>height of 1350px</b> and width should be a multiplication of
+    <b>1080px</b>
+  </p>
+
+  <input type="file" id="imageInput" accept="image/*" onchange="loadImage(event)" aria-label="Choose image to splitt">
+  <br>
+
+  <canvas id="canvas"></canvas>
+
+  <div class="images-container" id="imagesContainer"></div>
+  <button class="button-5" role="button" onclick="downloadImages()">Download Splitted Images</button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
